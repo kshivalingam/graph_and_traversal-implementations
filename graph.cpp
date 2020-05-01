@@ -14,7 +14,7 @@ class Graph{
         void single_direction(int src,int dest);
         void bi_direction(int src,int dest);
         void BFS(int start);
-        void DFS(int start);
+        void DFS(int start,vector<bool>&visit);
         void graph_print();
 };
 void Graph::graph_print(){
@@ -48,8 +48,13 @@ void Graph::BFS(int start){
         }
     }
 }
-void Graph::DFS(int start){
-    
+void Graph::DFS(int start,vector<bool>&visit){
+    visit[start]=true;
+    cout<<start<<" ";
+    for(int i=0;i<graph[start].size();i++){
+        if(visit[graph[start][i]]==false)DFS(graph[start][i],visit);
+    }
+    return;
 }
 int main(){
     int n,src,dest;
@@ -63,7 +68,8 @@ int main(){
     cout<<"enter the traversal vertex"<<endl;
     int vertex;
     cin>>vertex;
-    gp.BFS(vertex);
+    vector<bool>visit(n+1,false);
+    gp.DFS(vertex,visit);
     cout<<endl;
     cout<<"perfect"<<endl;
 }
