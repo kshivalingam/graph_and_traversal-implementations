@@ -60,9 +60,17 @@ int main(){
     int n,src,dest;
     cin>>n;
     Graph gp(5);
-    for(int i=0;i<n;i++){
+    int i=0;
+    while(i<n){
         cin>>src>>dest;
-        gp.bi_direction(src,dest);
+        if(src<=n && dest<=n)
+        {
+            gp.bi_direction(src,dest);
+            i++;
+        }
+        else{
+            cout<<"invalid entry"<<endl;
+        }
     }
     gp.graph_print();
     cout<<"enter the traversal vertex"<<endl;
